@@ -1,5 +1,9 @@
 #! /usr/bin/env node
 import inquirer from "inquirer";
+import chalk from "chalk";
+const color = "blue";
+const message = "Welcome to CLI ATM program!";
+console.log(chalk[color](message));
 let myBalence = 10000; // In Dollar
 let myPin = 2314;
 let userPin = await inquirer.prompt({
@@ -8,7 +12,8 @@ let userPin = await inquirer.prompt({
     type: "number"
 });
 if (userPin.enterPin === myPin) {
-    console.log(`Your Pin number is correct!!!`);
+    const color = "green";
+    console.log(chalk[color]("Your Pin number is correct!!!"));
     let whatProcess = await inquirer.prompt({
         name: "userAnswer",
         message: "What you want:",
@@ -22,7 +27,8 @@ if (userPin.enterPin === myPin) {
             type: "number"
         });
         if (WithdrawalTransaction.enterAmount > myBalence) {
-            console.log(`${myBalence} Your account balence is low!!`);
+            const color = "red";
+            console.log(chalk[color](`${myBalence} Your account balence is low!!`));
         }
         else {
             myBalence -= WithdrawalTransaction.enterAmount;
@@ -44,5 +50,6 @@ if (userPin.enterPin === myPin) {
     }
 }
 else {
-    console.log(`Incorrect Pin number!!!`);
+    const color = "red";
+    console.log(chalk[color](`Incorrect Pin number!!!`));
 }
